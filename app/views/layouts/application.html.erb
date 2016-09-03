@@ -1,14 +1,231 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Money</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+<head>
+  <title>Freelancer</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="appear-animate">
+<% if notice %>
+  <!-- Error Notice -->
+    <div class="alert success">
+        <i class="fa fa-lg fa-check-circle-o"></i> <%= notice%>
+    </div>
+<% end %>
+<% if alert %>
+  <!-- Error Notice -->
+    <div class="alert error">
+        <i class="fa fa-lg  fa-times-circle"></i> <%= alert%>
+    </div>
+<% end %>
+<!-- Navigation panel -->
+            <nav class="main-nav dark stick-fixed">
+                <div class="full-wrapper relative clearfix">
+                    <!-- Logo ( * your text or image into link tag *) -->
+                    <div class="nav-logo-wrap local-scroll">
+                        <a href="#top" class="logo">
+                            <img src="images/logo-white.png" alt="" />
+                        </a>
+                    </div>
+                    <div class="mobile-nav">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <!-- Main Menu -->
+                    <div class="inner-nav desktop-nav">
+                        <ul class="clearlist scroll-nav local-scroll">
+                            <li class="active"><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#expertise">Expertise</a></li>
+                            <li><a href="#portfolio">Case Studies</a></li>  
+                            <li><a href="#qa">Q&A</a></li> 
+                            <li><a href="#contact">Contact</a></li>
+                            <% unless user_signed_in?%>  
+                                <li><a href="/users/sign_in">Sign In</a></li>  
+                                <li><a href="/users/sign_up">Sign Up</a></li>
+                            <%else%>
+                                <li><%= link_to "Dashboard", user_path(:id) %></li>
+                                <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+                            <%end%>                            
+                            
+                            <!-- Social Links -->
+                            <li>
+                                <a href="#"><span class="mn-soc-link tooltip-bot" title="Facebook"><i class="fa fa-facebook"></i></span></a>
+                                <a href="#"><span class="mn-soc-link tooltip-bot" title="Twitter"><i class="fa fa-twitter"></i></span></a>
+                                <a href="#"><span class="mn-soc-link tooltip-bot" title="LinkedIn"><i class="fa fa-linkedin"></i></span></a>
+                            </li>
+                            <!-- End Social Links  -->
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navigation panel -->
+<%= yield %>
+            <!-- Foter -->
+            <footer class="small-section bg-gray-lighter footer pb-60">
+                <div class="container">
+                    
+                    <!-- Footer Widgets -->
+                    <div class="row align-left">
+                        
+                        <!-- Widget -->
+                        <div class="col-sm-6 col-md-3">
+                            <div class="widget">
+                                
+                                <h5 class="widget-title font-alt">About</h5>
+                                
+                                <div class="widget-body">
+                                    <div class="widget-text clearfix">
+                                        
+                                        Purus ut dignissim consectetur, nulla erat ultrices purus, ut consequat sem elit non sem.
+                                        Quisque magna ante eleifend lorem eleifend. Mauris pretium etere lorem enimet scelerisque.   
+                                    
+                                    </div>
+                                </div>
+                                
+                            </div>                            
+                        </div>
+                        <!-- End Widget -->
+                        
+                        <!-- Widget -->
+                        <div class="col-sm-6 col-md-3">
+                            <div class="widget">
+                                
+                                <h5 class="widget-title font-alt">Additional Links</h5>
+                                
+                                <div class="widget-body">
+                                    <ul class="clearlist widget-menu">
+                                        <li>
+                                            <a href="#" title="">About Us <i class="fa fa-angle-right right"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="">Careers <i class="fa fa-angle-right right"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="">Privacy Policy <i class="fa fa-angle-right right"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="">Contact <i class="fa fa-angle-right right"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>                          
+                        </div>
+                        <!-- End Widget -->
+                        
+                        <!-- Widget -->
+                        <div class="col-sm-6 col-md-3">
+                            <div class="widget">
+                                
+                                <h5 class="widget-title font-alt">Latest News</h5>
+                                
+                                <div class="widget-body">
+                                    <ul class="clearlist widget-posts">
+                                        <li class="clearfix">
+                                            <div class="widget-posts-descr">
+                                                <a href="#" title="">New Web Design Trends in 2015 year</a>
+                                                Posted by John Doe 7 Mar 
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <div class="widget-posts-descr">
+                                                <a href="#" title="">Hipster’s Style in Web Design and Logo</a>
+                                                Posted by John Doe 7 Mar 
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <div class="widget-posts-descr">
+                                                <a href="#" title="">Web Design Trends in 2015 year</a>
+                                                Posted by John Doe 7 Mar 
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                            <!-- End Widget -->                        
+                        </div>
+                        <!-- End Widget -->
+                        
+                        <!-- Widget -->
+                        <div class="col-sm-6 col-md-3">
+                            <div class="widget">
+                                
+                                <h5 class="widget-title font-alt">Newsletter</h5>
+                                
+                                <div class="widget-body">
+                                    <div class="widget-text clearfix">
+                                        
+                                        <form class="form" id="mailchimp">
+                                            
+                                            <div class="mb-20">Stay informed with our newsletter. Please trust us, we will never send you spam.</div>
+                                            
+                                            <div class="mb-20">
+                                                <input placeholder="Enter Your Email" class="form-control input-md round mb-10" type="email" pattern=".{5,100}" required/>
+                                                <button type="submit" class="btn btn-mod btn-gray btn-medium btn-round form-control mb-xs-10">Subscribe</button>
+                                            </div>
+                                              
+                                            <div id="subscribe-result"></div>
+                                        </form>
+                                    
+                                    </div>
+                                </div>
+                                
+                            </div>                            
+                        </div>
+                        <!-- End Widget -->
+                        
+                    </div>
+                    <!-- End Footer Widgets -->
+                    
+                    <!-- Divider -->
+                    <hr class="mt-0 mb-80 mb-xs-40"/>
+                    <!-- End Divider -->
+                    
+                    <!-- Footer Logo -->
+                    <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.5s">
+                        <a href="#top"><img src="images/logo-footer.png" width="78" height="36" alt="" /></a>
+                    </div>
+                    <!-- End Footer Logo -->
+                    
+                    <!-- Social Links -->
+                    <div class="footer-social-links mb-110 mb-xs-60">
+                        <a href="#" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="#" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="#" title="Behance" target="_blank"><i class="fa fa-behance"></i></a>
+                        <a href="#" title="LinkedIn+" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" title="Pinterest" target="_blank"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                    <!-- End Social Links -->  
+                    
+                    <!-- Footer Text -->
+                    <div class="footer-text">
+                        
+                        <!-- Copyright -->
+                        <div class="footer-copy font-alt">
+                            <a href="http://themeforest.net/user/theme-guru/portfolio" target="_blank">&copy; Rhythm 2016</a>.
+                        </div>
+                        <!-- End Copyright -->
+                        
+                        <div class="footer-made">
+                            Made with love for great people.
+                        </div>
+                        
+                    </div>
+                    <!-- End Footer Text --> 
+                    
+                 </div>
+                 
+                 
+                 <!-- Top Link -->
+                 <div class="local-scroll">
+                     <a href="#top" class="link-to-top"><i class="fa fa-caret-up"></i></a>
+                 </div>
+                 <!-- End Top Link -->
+                 
+            </footer>
+            <!-- End Foter -->
+</body>
 </html>

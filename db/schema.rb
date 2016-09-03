@@ -10,7 +10,90 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903041923) do
+ActiveRecord::Schema.define(version: 20160903044654) do
+
+  create_table "bands", force: :cascade do |t|
+    t.string   "name"
+    t.float    "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "pre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requesthcs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "amount"
+    t.integer  "to_currency"
+    t.integer  "from_currency"
+    t.boolean  "variable"
+    t.float    "floor"
+    t.float    "ceiling"
+    t.string   "to_user_email"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_requesthcs_on_user_id"
+  end
+
+  create_table "requestlcs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "amount"
+    t.integer  "to_currency"
+    t.integer  "from_currency"
+    t.boolean  "variable"
+    t.float    "floor"
+    t.float    "ceiling"
+    t.string   "to_user_email"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_requestlcs_on_user_id"
+  end
+
+  create_table "requestmcs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "amount"
+    t.integer  "to_currency"
+    t.integer  "from_currency"
+    t.boolean  "variable"
+    t.float    "floor"
+    t.float    "ceiling"
+    t.string   "to_user_email"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_requestmcs_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "amount"
+    t.integer  "to_currency"
+    t.integer  "from_currency"
+    t.boolean  "variable"
+    t.float    "floor"
+    t.float    "ceiling"
+    t.string   "to_user_email"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "to_user"
+    t.date     "date_completed"
+    t.float    "rate_achieved"
+    t.float    "charges"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.float    "amount"
+    t.boolean  "direction"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                          null: false

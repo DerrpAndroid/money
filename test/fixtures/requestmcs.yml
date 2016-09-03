@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  amount: 1.5
+  to_currency: 1
+  from_currency: 1
+  variable: false
+  floor: 1.5
+  ceiling: 1.5
+  to_user_email: MyString
+
+two:
+  user: two
+  amount: 1.5
+  to_currency: 1
+  from_currency: 1
+  variable: false
+  floor: 1.5
+  ceiling: 1.5
+  to_user_email: MyString
